@@ -1,0 +1,21 @@
+{
+  "name": "com.Lazyihui.LazyBinary",
+  "version": "0.1.0",
+  "description": "二进制序列化库",
+  "displayName": "LazyBinary",
+  "unity": "2019.4",
+  "author": {
+    "name": "GameArki",
+    "email": "chengbaozi6qq.com",
+    "url": "https://www.github.com/Lazyihui"
+  },
+  "changelogUrl": "",
+  "dependencies": {},
+  "documentationUrl": "",
+  "hideInEditor": false,
+  "keywords": [],
+  "license": "",
+  "licensesUrl": "",
+  "samples": [],
+  "unityRelease": "16f1"
+}
