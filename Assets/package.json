@@ -1,12 +1,12 @@
 {
-  "name": "com.Lazyihui.LazyBinary",
+  "name": "com.lazyihui.lazybinary",
   "version": "0.1.0",
   "description": "二进制序列化库",
   "displayName": "LazyBinary",
   "unity": "2019.4",
   "author": {
     "name": "GameArki",
-    "email": "chengbaozi6qq.com",
+    "email": "chengbaozi6@qq.com",
     "url": "https://www.github.com/Lazyihui"
   },
   "changelogUrl": "",
