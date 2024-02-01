@@ -7,7 +7,7 @@ namespace LazyBinary {
 
     public class BinaryWrite {
 
-        public static void WriteInt(byte[] buffer, int value,ref int index) {
+        public static void WriteInt(byte[] buffer, int value, ref int index) {
             buffer[index] = (byte)(value >> 0);
             index++;
             buffer[index] = (byte)(value >> 8);
@@ -15,6 +15,13 @@ namespace LazyBinary {
             buffer[index] = (byte)(value >> 16);
             index++;
             buffer[index] = (byte)(value >> 24);
+            index++;
+        }
+
+        public static void WriteUshort(byte[] buffer, int value, ref int index) {
+            buffer[index] = (byte)(value >> 0);
+            index++;
+            buffer[index] = (byte)(value >> 8);
             index++;
         }
     }
