@@ -1,0 +1,18 @@
+{
+    "name": "LazyBinary.Sample",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c43654cb16541be49b4e76018b1678dd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_EDITOR"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
