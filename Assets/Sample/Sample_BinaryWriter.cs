@@ -16,7 +16,7 @@ namespace LazyBinary.Sample {
 
             int index = 0;
 
-            int a = 100;
+            int a = 2146994236;
             //写入
             BinaryWrite.WriteInt(buffer, a, ref index);
             for (int i = 0; i < index; i++) {
@@ -24,11 +24,11 @@ namespace LazyBinary.Sample {
             }
 
             //读
-            int ra = 0;
-            ra = buffer[0];
-            ra = ra | (buffer[1] << 8);
-            ra = ra | (buffer[2] << 16);
-            ra = ra | (buffer[3] << 24);
+            index = 0;
+            int ra = BinaryReader.ReadrInt(buffer, ref index);
+            for (int i = 0; i < index; i++) {
+                Debug.Log(buffer[i]);
+            }
 
             Debug.Log("ra" + ra);
         }
