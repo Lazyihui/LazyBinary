@@ -25,8 +25,8 @@ namespace LazyBinary.Sample {
             Length = (ushort)(index - 2);//6 index
             index = 0;
             BinaryWrite.WriteUshort(buffer, Length, ref index);
-            for (int i = 0; i < index; i++) {
-                
+            for (int i = 0; i < index + 4; i++) {
+
                 Debug.Log(buffer[i]);
             }
 
@@ -34,17 +34,11 @@ namespace LazyBinary.Sample {
 
         void Start() {
             Write();
-            //写入
-            // BinaryWrite.WriteInt(buffer, a, ref index);
-            // for (int i = 0; i < index; i++) {
-            //     Debug.Log(buffer[i]);
-            // }
-
-            //读
         }
 
 
         void Reader() {
+
 
             //     int index = 0;
             //     int ra = BinaryReader.ReadrInt(buffer, ref index);
