@@ -20,12 +20,14 @@ namespace LazyBinary {
             return value;
         }
 
-        public static int ReadrUshort(byte[] buffer, ref int index) {
-            int value = 0;
-            value = value | buffer[index] << 0;
+        public static ushort ReadUshort(byte[] buffer, ref int index) {
+
+            ushort value = 0;
+
+            value = (ushort)(value | (buffer[index] << 0));
             index++;
 
-            value = value | (buffer[index] << 8);
+            value = (ushort)(value | (buffer[index] << 8));
             index++;
 
             return value;
