@@ -9,10 +9,11 @@ namespace LazyBinary.Sample {
     public class RoleEntity {
 
         public int level;
-        public int hp;
-        public int def;
 
-        public char a;
+
+        public long hp;
+
+        public char def;
 
 
 
@@ -22,8 +23,9 @@ namespace LazyBinary.Sample {
             int index = 2;
 
             BinaryWrite.WriteInt(buffer, level, ref index);
-            BinaryWrite.WriteInt(buffer, hp, ref index);
-            BinaryWrite.WriteInt(buffer, def, ref index);
+            BinaryWrite.Writelong8(buffer, hp, ref index);
+            BinaryWrite.WriteCharBool1(buffer, def, ref index);
+
 
             index = 0;
             BinaryWrite.WriteUshort2(buffer, (ushort)(index - 2), ref index);
@@ -36,19 +38,17 @@ namespace LazyBinary.Sample {
         public void Load() {
             byte[] buffer = File.ReadAllBytes(System.Environment.CurrentDirectory + "/role.sav");
 
-            // int index = 0;
-            // ushort Length = BinaryReader.ReadrUshort(buffer, ref index);
             int index = 0;
             ushort length = BinaryReader.ReadUshort(buffer, ref index);
 
             level = BinaryReader.ReadrInt(buffer, ref index);
-            hp = BinaryReader.ReadrInt(buffer, ref index);
-            def = BinaryReader.ReadrInt(buffer, ref index);
+            hp = BinaryReader.ReadLong(buffer, ref index);
+            def = BinaryReader.ReadChar(buffer, ref index);
 
 
         }
         public void Log() {
-            Debug.Log("lev:" + level + ",hp:" + hp + ",def:" + def);
+            Debug.Log("lev:" + level + "hp:" + hp + "def:" + def);
         }
     }
 
@@ -58,13 +58,15 @@ namespace LazyBinary.Sample {
 
         void Awak() {
             RoleEntity role = new RoleEntity();
-            role.Load();
-            role.Log();
-            // role.level = 99;
-            // role.hp = 75;
-            // role.def = 55;
-            // role.Save();
+            // role.Load();
             // role.Log();
+            role.level = 99;
+            role.hp = 75;
+
+            role.def = (char)(uint)55;
+
+            role.Save();
+            role.Log();
         }
 
         void Write() {
@@ -91,6 +93,14 @@ namespace LazyBinary.Sample {
         void Start() {
             // Write();
             Awak();
+            // int hh;
+            // hh = 5;
+            // Debug.Log(hh);
+
+            // long bb = (long)(uint)hh;
+            // Debug.Log(bb);
+            // Debug.Log(hh);
+
         }
 
 

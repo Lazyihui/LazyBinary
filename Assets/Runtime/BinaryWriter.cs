@@ -6,7 +6,7 @@ using UnityEngine;
 namespace LazyBinary {
 
     public class BinaryWrite {
-        public static void WriteCharBool1(byte[] buffer, int value, ref int index) {
+        public static void WriteCharBool1(byte[] buffer, char value, ref int index) {
             buffer[index] = (byte)(value >> 0);
             index++;
         }
@@ -30,7 +30,7 @@ namespace LazyBinary {
 
 
 
-        public static void Writelong8(byte[] buffer, int value, ref int index) {
+        public static void Writelong8(byte[] buffer, long value, ref int index) {
             buffer[index] = (byte)(value >> 0);
             index++;
             buffer[index] = (byte)(value >> 8);

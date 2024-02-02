@@ -34,34 +34,47 @@ namespace LazyBinary {
         }
 
         // public static bool ReadBool(byte[] buffer, ref int index) {
-        // bool value = (bool)0;
+        //     bool value = (bool)(uint)0;
         //     value = (bool)(value | (buffer[index] << 0));
         //     return value;
         // }
-        // public static char ReadChar(byte[] buffer,ref int index){
-        //     // char value = 0;
-        //         return value;
-        // }
 
-        // public static long ReadLong(byte[] buffer, ref int index) {
-        //     long value = 0;
+        public static char ReadChar(byte[] buffer, ref int index) {
+            char value = (char)(uint)0;
+            value = (char)((int)value | (buffer[index] << 0));
 
+            return value;
+        }
 
-        //     value = (long)(value | (buffer[index] << 0));
-        //     index++;
+        public static long ReadLong(byte[] buffer, ref int index) {
 
-        //     value = (long)value | (buffer[index] << 8);
-        //     index++;
-
-        //     value = (long)value | (buffer[index] << 16);
-        //     index++;
-
-        //     value = (long)value | (buffer[index] << 24);
-        //     index++;
-
-        //     return value;
+            long value = 0;
 
 
-        // }
+            value = (long)((int)value | (buffer[index] << 0));
+            index++;
+
+            value = (long)((int)value | (buffer[index] << 16));
+            index++;
+
+            value = (long)((int)value | (buffer[index] << 24));
+            index++;
+
+            value = (long)((int)value | (buffer[index] << 32));
+            index++;
+            value = (long)((int)value | (buffer[index] << 40));
+            index++;
+            value = (long)((int)value | (buffer[index] << 48));
+            index++;
+            value = (long)((int)value | (buffer[index] << 56));
+            index++;
+            value = (long)((int)value | (buffer[index] << 64));
+            index++;
+
+
+            return value;
+
+
+        }
     }
 }
