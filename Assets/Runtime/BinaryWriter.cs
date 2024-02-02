@@ -6,10 +6,17 @@ using UnityEngine;
 namespace LazyBinary {
 
     public class BinaryWrite {
-        public static void WriteCharBool1(byte[] buffer, char value, ref int index) {
+
+        
+        public static void WriteChar2(byte[] buffer, char value, ref int index) {
             buffer[index] = (byte)(value >> 0);
             index++;
+
+            buffer[index] = (byte)(value >> 8);
+            index++;
         }
+
+
         public static void WriteUshort2(byte[] buffer, int value, ref int index) {
             buffer[index] = (byte)(value >> 0);
             index++;

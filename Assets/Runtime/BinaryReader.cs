@@ -39,9 +39,13 @@ namespace LazyBinary {
         //     return value;
         // }
 
-        public static char ReadChar(byte[] buffer, ref int index) {
+        public static char ReadChar2(byte[] buffer, ref int index) {
             char value = (char)(uint)0;
             value = (char)((int)value | (buffer[index] << 0));
+            index++;
+
+            value = (char)((int)value | (buffer[index] << 8));
+            index++;
 
             return value;
         }
@@ -54,6 +58,9 @@ namespace LazyBinary {
             value = (long)((int)value | (buffer[index] << 0));
             index++;
 
+            value = (long)((int)value | (buffer[index] << 8));
+            index++;
+            
             value = (long)((int)value | (buffer[index] << 16));
             index++;
 
@@ -62,12 +69,16 @@ namespace LazyBinary {
 
             value = (long)((int)value | (buffer[index] << 32));
             index++;
+            
             value = (long)((int)value | (buffer[index] << 40));
             index++;
+            
             value = (long)((int)value | (buffer[index] << 48));
             index++;
+            
             value = (long)((int)value | (buffer[index] << 56));
             index++;
+            
             value = (long)((int)value | (buffer[index] << 64));
             index++;
 

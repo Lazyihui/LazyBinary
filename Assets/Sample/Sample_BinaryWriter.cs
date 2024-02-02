@@ -24,7 +24,7 @@ namespace LazyBinary.Sample {
 
             BinaryWrite.WriteInt(buffer, level, ref index);
             BinaryWrite.Writelong8(buffer, hp, ref index);
-            BinaryWrite.WriteCharBool1(buffer, def, ref index);
+            BinaryWrite.WriteChar2(buffer, def, ref index);
 
 
             index = 0;
@@ -43,7 +43,7 @@ namespace LazyBinary.Sample {
 
             level = BinaryReader.ReadrInt(buffer, ref index);
             hp = BinaryReader.ReadLong(buffer, ref index);
-            def = BinaryReader.ReadChar(buffer, ref index);
+            def = BinaryReader.ReadChar2(buffer, ref index);
 
 
         }
@@ -60,10 +60,11 @@ namespace LazyBinary.Sample {
             RoleEntity role = new RoleEntity();
             // role.Load();
             // role.Log();
-            role.level = 99;
-            role.hp = 75;
 
-            role.def = (char)(uint)55;
+            role.level = 99;
+            role.hp = 75L;
+
+            role.def = '哈';
 
             role.Save();
             role.Log();
