@@ -12,6 +12,9 @@ namespace LazyBinary.Sample {
         public int hp;
         public int def;
 
+        public char a;
+
+
 
         public void Save() {
             byte[] buffer = new byte[1024];
@@ -23,7 +26,7 @@ namespace LazyBinary.Sample {
             BinaryWrite.WriteInt(buffer, def, ref index);
 
             index = 0;
-            BinaryWrite.WriteUshort(buffer, (ushort)(index - 2), ref index);
+            BinaryWrite.WriteUshort2(buffer, (ushort)(index - 2), ref index);
 
             File.WriteAllBytes(System.Environment.CurrentDirectory + "/role.sav", buffer);
 
@@ -75,9 +78,9 @@ namespace LazyBinary.Sample {
             int a = 2146994236;
 
             BinaryWrite.WriteInt(buffer, a, ref index);
-            Length = (ushort)(index - 2);//6 index
+            Length = (ushort)(index - 2);//6 indsex
             index = 0;
-            BinaryWrite.WriteUshort(buffer, Length, ref index);
+            BinaryWrite.WriteUshort2(buffer, Length, ref index);
             for (int i = 0; i < index + 4; i++) {
 
                 Debug.Log(buffer[i]);

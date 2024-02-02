@@ -32,5 +32,36 @@ namespace LazyBinary {
 
             return value;
         }
+
+        // public static bool ReadBool(byte[] buffer, ref int index) {
+        // bool value = (bool)0;
+        //     value = (bool)(value | (buffer[index] << 0));
+        //     return value;
+        // }
+        // public static char ReadChar(byte[] buffer,ref int index){
+        //     // char value = 0;
+        //         return value;
+        // }
+
+        // public static long ReadLong(byte[] buffer, ref int index) {
+        //     long value = 0;
+
+
+        //     value = (long)(value | (buffer[index] << 0));
+        //     index++;
+
+        //     value = (long)value | (buffer[index] << 8);
+        //     index++;
+
+        //     value = (long)value | (buffer[index] << 16);
+        //     index++;
+
+        //     value = (long)value | (buffer[index] << 24);
+        //     index++;
+
+        //     return value;
+
+
+        // }
     }
 }
