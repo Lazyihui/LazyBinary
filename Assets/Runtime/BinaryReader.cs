@@ -52,7 +52,7 @@ namespace LazyBinary {
 
         public static long ReadLong(byte[] buffer, ref int index) {
 
-            long value = 0;
+            long value = (long)(uint)0;
 
 
             value = (long)((int)value | (buffer[index] << 0));
@@ -60,7 +60,7 @@ namespace LazyBinary {
 
             value = (long)((int)value | (buffer[index] << 8));
             index++;
-            
+
             value = (long)((int)value | (buffer[index] << 16));
             index++;
 
@@ -69,16 +69,16 @@ namespace LazyBinary {
 
             value = (long)((int)value | (buffer[index] << 32));
             index++;
-            
+
             value = (long)((int)value | (buffer[index] << 40));
             index++;
-            
+
             value = (long)((int)value | (buffer[index] << 48));
             index++;
-            
+
             value = (long)((int)value | (buffer[index] << 56));
             index++;
-            
+
             value = (long)((int)value | (buffer[index] << 64));
             index++;
 

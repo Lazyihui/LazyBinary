@@ -45,10 +45,15 @@ namespace LazyBinary.Sample {
             hp = BinaryReader.ReadLong(buffer, ref index);
             def = BinaryReader.ReadChar2(buffer, ref index);
 
+            for (int i = 0; i < index; i++) {
+                Debug.Log(buffer[i]);
+            }
 
         }
         public void Log() {
-            Debug.Log("lev:" + level + "hp:" + hp + "def:" + def);
+
+
+            Debug.Log(" lev:" + level + " hp:" + hp + " def:" + def);
         }
     }
 
@@ -58,16 +63,16 @@ namespace LazyBinary.Sample {
 
         void Awak() {
             RoleEntity role = new RoleEntity();
-            // role.Load();
-            // role.Log();
-
-            role.level = 99;
-            role.hp = 75L;
-
-            role.def = '哈';
-
-            role.Save();
+            role.Load();
             role.Log();
+
+            // role.level = 99;
+            // role.hp = 75;
+
+            // role.def = '哈';
+
+            // role.Save();
+            // role.Log();
         }
 
         void Write() {
