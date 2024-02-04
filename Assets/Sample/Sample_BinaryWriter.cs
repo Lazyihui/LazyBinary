@@ -15,6 +15,10 @@ namespace LazyBinary.Sample {
 
         public char def;
 
+        // public bool isClick;
+
+        public sbyte sbt;
+
 
 
         public void Save() {
@@ -25,6 +29,9 @@ namespace LazyBinary.Sample {
             BinaryWrite.WriteInt(buffer, level, ref index);
             BinaryWrite.Writelong8(buffer, hp, ref index);
             BinaryWrite.WriteChar2(buffer, def, ref index);
+            BinaryWrite.WriteSbyte1(buffer, sbt, ref index);
+
+            // BinaryWrite.WriteBool1(buffer, (int)(uint)isClick, ref index);
 
 
             index = 0;
@@ -32,6 +39,9 @@ namespace LazyBinary.Sample {
 
             File.WriteAllBytes(System.Environment.CurrentDirectory + "/role.sav", buffer);
 
+            for (int i = 0; i < index + 15; i++) {
+                Debug.Log(buffer[i]);
+            }
 
         }
 
@@ -44,6 +54,7 @@ namespace LazyBinary.Sample {
             level = BinaryReader.ReadrInt(buffer, ref index);
             hp = BinaryReader.ReadLong(buffer, ref index);
             def = BinaryReader.ReadChar2(buffer, ref index);
+            sbt = BinaryReader.ReadShort(buffer, ref index);
 
             for (int i = 0; i < index; i++) {
                 Debug.Log(buffer[i]);
@@ -52,8 +63,7 @@ namespace LazyBinary.Sample {
         }
         public void Log() {
 
-
-            Debug.Log(" lev:" + level + " hp:" + hp + " def:" + def);
+            Debug.Log(" lev:" + level + " hp:" + hp + " def:" + def + " sbt:" + sbt);
         }
     }
 
@@ -67,9 +77,13 @@ namespace LazyBinary.Sample {
             role.Log();
 
             // role.level = 99;
-            // role.hp = 75;
+            // role.hp = 75L;
 
             // role.def = '哈';
+
+            // role.sbt = 111;
+
+            // // role.isClick = false;
 
             // role.Save();
             // role.Log();

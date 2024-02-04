@@ -20,6 +20,16 @@ namespace LazyBinary {
             return value;
         }
 
+        public static sbyte ReadShort(byte[] buffer, ref int index) {
+            sbyte value = 0;
+
+            value = (sbyte)((int)value | (buffer[index] << 0));
+            index++;
+            value = (sbyte)((int)value | (buffer[index] << 8));
+            index++;
+            return value;
+        }
+
         public static ushort ReadUshort(byte[] buffer, ref int index) {
 
             ushort value = 0;
@@ -79,8 +89,6 @@ namespace LazyBinary {
             value = (long)((int)value | (buffer[index] << 56));
             index++;
 
-            value = (long)((int)value | (buffer[index] << 64));
-            index++;
 
 
             return value;
