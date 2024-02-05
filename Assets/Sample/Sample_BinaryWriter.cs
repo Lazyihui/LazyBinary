@@ -8,17 +8,8 @@ namespace LazyBinary.Sample {
 
     public class RoleEntity {
 
-        public int level;
 
-
-        public long hp;
-
-        public char def;
-
-        // public bool isClick;
-
-        public sbyte sbt;
-
+        public int[] int4;
 
 
         public void Save() {
@@ -26,20 +17,19 @@ namespace LazyBinary.Sample {
 
             int index = 2;
 
-            BinaryWrite.WriteInt(buffer, level, ref index);
-            BinaryWrite.Writelong8(buffer, hp, ref index);
-            BinaryWrite.WriteChar2(buffer, def, ref index);
-            BinaryWrite.WriteSbyte1(buffer, sbt, ref index);
+            BinaryWrite.WriteInt4Arr(buffer, int4, ref index);
 
-            // BinaryWrite.WriteBool1(buffer, (int)(uint)isClick, ref index);
+
 
 
             index = 0;
             BinaryWrite.WriteUshort2(buffer, (ushort)(index - 2), ref index);
 
+
+
             File.WriteAllBytes(System.Environment.CurrentDirectory + "/role.sav", buffer);
 
-            for (int i = 0; i < index + 15; i++) {
+            for (int i = 0; i < index + 26; i++) {
                 Debug.Log(buffer[i]);
             }
 
@@ -51,10 +41,6 @@ namespace LazyBinary.Sample {
             int index = 0;
             ushort length = BinaryReader.ReadUshort(buffer, ref index);
 
-            level = BinaryReader.ReadrInt(buffer, ref index);
-            hp = BinaryReader.ReadLong(buffer, ref index);
-            def = BinaryReader.ReadChar2(buffer, ref index);
-            sbt = BinaryReader.ReadShort(buffer, ref index);
 
             for (int i = 0; i < index; i++) {
                 Debug.Log(buffer[i]);
@@ -62,8 +48,9 @@ namespace LazyBinary.Sample {
 
         }
         public void Log() {
-
-            Debug.Log(" lev:" + level + " hp:" + hp + " def:" + def + " sbt:" + sbt);
+            for (int i = 0; i < 5; i++) {
+                Debug.Log(int4[i]);
+            }
         }
     }
 
@@ -73,20 +60,18 @@ namespace LazyBinary.Sample {
 
         void Awak() {
             RoleEntity role = new RoleEntity();
-            role.Load();
-            role.Log();
-
-            // role.level = 99;
-            // role.hp = 75L;
-
-            // role.def = '哈';
-
-            // role.sbt = 111;
-
-            // // role.isClick = false;
-
-            // role.Save();
+            // role.Load();
             // role.Log();
+
+
+            role.int4 = new int[5];
+
+            for (int i = 0; i < 5; i++) {
+                role.int4[i] = i;
+            }
+
+            role.Save();
+            role.Log();
         }
 
         void Write() {
