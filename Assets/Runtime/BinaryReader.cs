@@ -10,8 +10,15 @@ namespace LazyBinary {
 
             value = (sbyte)((int)value | (buffer[index] << 0));
             index++;
-            value = (sbyte)((int)value | (buffer[index] << 8));
+
+            return value;
+        }
+        public static byte ReadByte(byte[] buffer, ref int index) {
+            byte value = 0;
+
+            value = (byte)((int)value | (buffer[index] << 0));
             index++;
+
             return value;
         }
 
@@ -60,37 +67,44 @@ namespace LazyBinary {
         public static long ReadLong(byte[] buffer, ref int index) {
 
             long value = (long)(uint)0;
-
-
             value = (long)((int)value | (buffer[index] << 0));
             index++;
-
             value = (long)((int)value | (buffer[index] << 8));
             index++;
-
             value = (long)((int)value | (buffer[index] << 16));
             index++;
-
             value = (long)((int)value | (buffer[index] << 24));
             index++;
-
             value = (long)((int)value | (buffer[index] << 32));
             index++;
-
             value = (long)((int)value | (buffer[index] << 40));
             index++;
-
             value = (long)((int)value | (buffer[index] << 48));
             index++;
-
             value = (long)((int)value | (buffer[index] << 56));
             index++;
-
-
-
             return value;
+        }
+        public static ulong ReadUlong(byte[] buffer, ref int index) {
 
-
+            ulong value = (ulong)0;
+            value = (ulong)((int)value | (buffer[index] << 0));
+            index++;
+            value = (ulong)((int)value | (buffer[index] << 8));
+            index++;
+            value = (ulong)((int)value | (buffer[index] << 16));
+            index++;
+            value = (ulong)((int)value | (buffer[index] << 24));
+            index++;
+            value = (ulong)((int)value | (buffer[index] << 32));
+            index++;
+            value = (ulong)((int)value | (buffer[index] << 40));
+            index++;
+            value = (ulong)((int)value | (buffer[index] << 48));
+            index++;
+            value = (ulong)((int)value | (buffer[index] << 56));
+            index++;
+            return value;
         }
         public static int ReadInt(byte[] buffer, ref int index) {
             int value = 0;
@@ -101,6 +115,20 @@ namespace LazyBinary {
             value = value | (buffer[index] << 16);
             index++;
             value = value | (buffer[index] << 24);
+            index++;
+
+            return value;
+        }
+        public static uint ReadUint(byte[] buffer, ref int index) {
+            uint value = 0;
+
+            value = value | (uint)buffer[index] << 0;
+            index++;
+            value = value | (uint)(buffer[index] << 8);
+            index++;
+            value = value | (uint)(buffer[index] << 16);
+            index++;
+            value = value | (uint)(buffer[index] << 24);
             index++;
 
             return value;
@@ -122,7 +150,16 @@ namespace LazyBinary {
                 int d = ReadInt(buffer, ref index);
                 value[i] = d;
             }
+            return value;
+        }
+        public static uint[] ReadUintArr(byte[] buffer, ref int index) {
 
+            ushort count = ReadUshort(buffer, ref index);
+            uint[] value = new uint[count];
+            for (int i = 0; i < count; i++) {
+                uint d = ReadUint(buffer, ref index);
+                value[i] = d;
+            }
             return value;
         }
 
@@ -147,6 +184,72 @@ namespace LazyBinary {
             }
             return value;
         }
+        public static long[] ReadLongArr(byte[] buffer, ref int index) {
+            ushort count = ReadUshort(buffer, ref index);
+
+            long[] value = new long[count];
+            for (int i = 0; i < count; i++) {
+                long d = ReadLong(buffer, ref index);
+                value[i] = d;
+            }
+            return value;
+        }
+        public static ulong[] ReadlUongArr(byte[] buffer, ref int index) {
+            ushort count = ReadUshort(buffer, ref index);
+
+            ulong[] value = new ulong[count];
+            for (int i = 0; i < count; i++) {
+                ulong d = ReadUlong(buffer, ref index);
+                value[i] = d;
+            }
+            return value;
+        }
+
+        public static sbyte[] ReadSbyteArr(byte[] buffer, ref int index) {
+            ushort count = ReadUshort(buffer, ref index);
+
+            sbyte[] value = new sbyte[count];
+            for (int i = 0; i < count; i++) {
+                sbyte d = ReadSbyte(buffer, ref index);
+                value[i] = d;
+            }
+            return value;
+        }
+        public static byte[] ReadByteArr(byte[] buffer, ref int index) {
+            ushort count = ReadUshort(buffer, ref index);
+
+            byte[] value = new byte[count];
+            for (int i = 0; i < count; i++) {
+                byte d = ReadByte(buffer, ref index);
+                value[i] = d;
+            }
+            return value;
+        }
+        public static short[] ReadShortArr(byte[] buffer, ref int index) {
+            ushort count = ReadUshort(buffer, ref index);
+
+            short[] value = new short[count];
+            for (int i = 0; i < count; i++) {
+                short d = ReadShort(buffer, ref index);
+                value[i] = d;
+            }
+            return value;
+        }
+        public static ushort[] ReadUshortArr(byte[] buffer, ref int index) {
+            ushort count = ReadUshort(buffer, ref index);
+
+            ushort[] value = new ushort[count];
+            for (int i = 0; i < count; i++) {
+                ushort d = ReadUshort(buffer, ref index);
+                value[i] = d;
+            }
+            return value;
+        }
+
+
+
+
+
 
         //  public static int[] ReadInt32Arr(byte[] src, ref int offset) {
         //     ushort count = ReadUInt16(src, ref offset);

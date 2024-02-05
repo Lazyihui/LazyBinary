@@ -25,6 +25,14 @@ namespace LazyBinary {
             index++;
 
         }
+
+        public static void WriteByte1(byte[] buffer, byte value, ref int index) {
+
+            buffer[index] = (byte)(value >> 0);
+            index++;
+
+        }
+
         public static void WriteChar2(byte[] buffer, char value, ref int index) {
             buffer[index] = (byte)(value >> 0);
             index++;
@@ -54,34 +62,54 @@ namespace LazyBinary {
 
         }
         public static void Writelong8(byte[] buffer, long value, ref int index) {
-
-
             buffer[index] = (byte)(value >> 0);
             index++;
-
             buffer[index] = (byte)(value >> 8);
             index++;
-
             buffer[index] = (byte)(value >> 16);
             index++;
-
             buffer[index] = (byte)(value >> 24);
             index++;
-
             buffer[index] = (byte)(value >> 32);
             index++;
-
             buffer[index] = (byte)(value >> 40);
             index++;
-
             buffer[index] = (byte)(value >> 48);
             index++;
+            buffer[index] = (byte)(value >> 56);
+            index++;
 
+        }
+        public static void WriteUlong8(byte[] buffer, ulong value, ref int index) {
+            buffer[index] = (byte)(value >> 0);
+            index++;
+            buffer[index] = (byte)(value >> 8);
+            index++;
+            buffer[index] = (byte)(value >> 16);
+            index++;
+            buffer[index] = (byte)(value >> 24);
+            index++;
+            buffer[index] = (byte)(value >> 32);
+            index++;
+            buffer[index] = (byte)(value >> 40);
+            index++;
+            buffer[index] = (byte)(value >> 48);
+            index++;
             buffer[index] = (byte)(value >> 56);
             index++;
 
         }
         public static void WriteInt(byte[] buffer, int value, ref int index) {
+            buffer[index] = (byte)(value >> 0);
+            index++;
+            buffer[index] = (byte)(value >> 8);
+            index++;
+            buffer[index] = (byte)(value >> 16);
+            index++;
+            buffer[index] = (byte)(value >> 24);
+            index++;
+        }
+        public static void WriteUint(byte[] buffer, uint value, ref int index) {
             buffer[index] = (byte)(value >> 0);
             index++;
             buffer[index] = (byte)(value >> 8);
@@ -101,6 +129,17 @@ namespace LazyBinary {
                 }
             } else {
                 WriteUshort2(buffer, 0, ref index);
+            }
+        }
+        public static void WriteUint4Arr(byte[] buffer, uint[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+                for (int i = 0; i < count; i++) {
+                    WriteUint(buffer, value[i], ref index);
+                }
+            } else {
+                WriteUint(buffer, 0, ref index);
             }
         }
 
@@ -128,6 +167,82 @@ namespace LazyBinary {
                 WriteBool1(buffer, false, ref index);
             }
         }
+        public static void WriteLongArr(byte[] buffer, long[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+                for (int i = 0; i < count; i++) {
+                    Writelong8(buffer, value[i], ref index);
+                }
+            } else {
+                Writelong8(buffer, 0, ref index);
+            }
+        }
+        public static void WriteUlongArr(byte[] buffer, ulong[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+
+                for (int i = 0; i < count; i++) {
+                    WriteUlong8(buffer, value[i], ref index);
+                }
+            } else {
+                WriteUlong8(buffer, 0, ref index);
+            }
+        }
+        public static void WriteSbyteArr(byte[] buffer, sbyte[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+                for (int i = 0; i < count; i++) {
+                    WriteSbyte1(buffer, value[i], ref index);
+                }
+            } else {
+                WriteSbyte1(buffer, 0, ref index);
+            }
+        }
+        public static void WriteByteArr(byte[] buffer, byte[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+
+                for (int i = 0; i < count; i++) {
+                    WriteByte1(buffer, value[i], ref index);
+                }
+            } else {
+                WriteByte1(buffer, 0, ref index);
+            }
+        }
+
+        public static void WriteShortArr(byte[] buffer, short[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+
+                for (int i = 0; i < count; i++) {
+                    WriteShort2(buffer, value[i], ref index);
+                }
+            } else {
+                WriteShort2(buffer, 0, ref index);
+            }
+        }
+        public static void WriteUshortArr(byte[] buffer, int[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+
+                for (int i = 0; i < count; i++) {
+                    WriteUshort2(buffer, value[i], ref index);
+                }
+            } else {
+                WriteUshort2(buffer, 0, ref index);
+            }
+        }
+
+
+
+
+
     }
 
 }
