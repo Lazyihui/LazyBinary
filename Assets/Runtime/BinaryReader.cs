@@ -105,6 +105,14 @@ namespace LazyBinary {
 
             return value;
         }
+
+        public static bool ReadBool(byte[] buffer, ref int index) {
+            if (buffer[index] == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
         //数组
         public static int[] ReadIntArr(byte[] buffer, ref int index) {
 
@@ -115,6 +123,28 @@ namespace LazyBinary {
                 value[i] = d;
             }
 
+            return value;
+        }
+
+        public static char[] ReadCharArr(byte[] buffer, ref int index) {
+            ushort count = ReadUshort(buffer, ref index);
+
+            char[] value = new char[count];
+            for (int i = 0; i < count; i++) {
+                char d = ReadChar2(buffer, ref index);
+                value[i] = d;
+            }
+            return value;
+        }
+
+        public static bool[] readBoolArr(byte[] buffer, ref int index) {
+
+            ushort count = ReadUshort(buffer, ref index);
+            bool[] value = new bool[count];
+            for (int i = 0; i < count; i++) {
+                bool a = ReadBool(buffer, ref index);
+                value[i] = a;
+            }
             return value;
         }
 

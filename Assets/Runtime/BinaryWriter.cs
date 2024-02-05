@@ -103,18 +103,31 @@ namespace LazyBinary {
                 WriteUshort2(buffer, 0, ref index);
             }
         }
-        //   public static void WriteInt16Arr(byte[] dst, short[] data, ref int offset) {
-        //             if (data != null) {
-        //                 ushort count = (ushort)data.Length;
-        //                 WriteUInt16(dst, count, ref offset);
-        //                 for (int i = 0; i < count; i += 1) {
-        //                     WriteInt16(dst, data[i], ref offset);
-        //                 }
-        //             } else {
-        //                 WriteUInt16(dst, 0, ref offset);
-        //             }
-        //         }
 
+
+        public static void WriteChar2Arr(byte[] buffer, char[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+                for (int i = 0; i < count; i++) {
+                    WriteChar2(buffer, value[i], ref index);
+                }
+            } else {
+                WriteChar2(buffer, (char)(uint)48, ref index);
+            }
+        }
+
+        public static void WriteBoolArr(byte[] buffer, bool[] value, ref int index) {
+            if (value != null) {
+                ushort count = (ushort)value.Length;
+                WriteUshort2(buffer, count, ref index);
+                for (int i = 0; i < count; i++) {
+                    WriteBool1(buffer, value[i], ref index);
+                }
+            } else {
+                WriteBool1(buffer, false, ref index);
+            }
+        }
     }
 
 }
