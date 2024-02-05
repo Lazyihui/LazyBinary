@@ -3,22 +3,7 @@ namespace LazyBinary {
     public static class BinaryReader {
 
 
-        public static int ReadrInt(byte[] buffer, ref int index) {
-            int value = 0;
-            value = value | buffer[index] << 0;
-            index++;
 
-            value = value | (buffer[index] << 8);
-            index++;
-
-            value = value | (buffer[index] << 16);
-            index++;
-
-            value = value | (buffer[index] << 24);
-            index++;
-
-            return value;
-        }
 
         public static sbyte ReadSbyte(byte[] buffer, ref int index) {
             sbyte value = 0;
@@ -107,5 +92,40 @@ namespace LazyBinary {
 
 
         }
+        public static int ReadInt(byte[] buffer, ref int index) {
+            int value = 0;
+            value = value | buffer[index] << 0;
+            index++;
+            value = value | (buffer[index] << 8);
+            index++;
+            value = value | (buffer[index] << 16);
+            index++;
+            value = value | (buffer[index] << 24);
+            index++;
+
+            return value;
+        }
+        //数组
+        public static int[] ReadIntArr(byte[] buffer, ref int index) {
+
+            ushort count = ReadUshort(buffer, ref index);
+            int[] value = new int[count];
+            for (int i = 0; i < count; i++) {
+                int d = ReadInt(buffer, ref index);
+                value[i] = d;
+            }
+
+            return value;
+        }
+
+        //  public static int[] ReadInt32Arr(byte[] src, ref int offset) {
+        //     ushort count = ReadUInt16(src, ref offset);
+        //     int[] data = new int[count];
+        //     for (int i = 0; i < count; i += 1) {
+        //         int d = ReadInt32(src, ref offset);
+        //         data[i] = d;
+        //     }
+        //     return data;
+        // }
     }
 }

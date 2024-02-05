@@ -40,6 +40,7 @@ namespace LazyBinary.Sample {
 
             int index = 0;
             ushort length = BinaryReader.ReadUshort(buffer, ref index);
+            int4 = BinaryReader.ReadIntArr(buffer, ref index);
 
 
             for (int i = 0; i < index; i++) {
@@ -60,18 +61,18 @@ namespace LazyBinary.Sample {
 
         void Awak() {
             RoleEntity role = new RoleEntity();
-            // role.Load();
-            // role.Log();
-
-
-            role.int4 = new int[5];
-
-            for (int i = 0; i < 5; i++) {
-                role.int4[i] = i;
-            }
-
-            role.Save();
+            role.Load();
             role.Log();
+
+
+            // role.int4 = new int[5];
+
+            // for (int i = 0; i < 5; i++) {
+            //     role.int4[i] = i;
+            // }
+
+            // role.Save();
+            // role.Log();
         }
 
         void Write() {
