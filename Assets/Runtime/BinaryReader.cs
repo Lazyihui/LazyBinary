@@ -246,7 +246,15 @@ namespace LazyBinary {
             return value;
         }
 
-
+        public static string ReadString(byte[] buffer, ref int index) {
+            //读取字符串长度
+            ushort count = ReadUshort(buffer, ref index);
+            //读取字符串
+            string value = System.Text.Encoding.UTF8.GetString(buffer, index, count);
+            //因为没有用ref 所以要手动加+=
+            index += count;
+            return value;
+        }
 
 
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 
@@ -239,7 +240,21 @@ namespace LazyBinary {
             }
         }
 
+        public static void WriteUtf8String(byte[] buffer, string value, ref int index) {
+            if (value != null) {
+                byte[] bytes = Encoding.UTF8.GetBytes(value);
+                //存储字符串长度
+                WriteUshort2(buffer, (ushort)bytes.Length, ref index);
 
+                for (int i = 0; i < bytes.Length; i++) {
+                    buffer[index] = bytes[i];
+                    index++;
+                }
+
+            } else {
+                WriteUshort2(buffer, 0, ref index);
+            }
+        }
 
 
 

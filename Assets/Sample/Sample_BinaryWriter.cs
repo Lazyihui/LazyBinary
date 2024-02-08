@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Runtime.InteropServices;
 
 
 namespace LazyBinary.Sample {
+
+    [StructLayout(LayoutKind.Explicit)]
+    public struct Bit32 {
+        // 二进制重叠
+        [FieldOffset(0)] public float f; // 4byte
+        [FieldOffset(0)] public uint uf; // 4byte
+    }
 
     public class RoleEntity {
 
@@ -46,7 +54,7 @@ namespace LazyBinary.Sample {
             q = BinaryReader.ReadSbyte(buffer, ref index);
 
 
-            for (int i = 0; i < index+10; i++) {
+            for (int i = 0; i < index + 10; i++) {
                 Debug.Log(buffer[i]);
             }
 
@@ -65,6 +73,23 @@ namespace LazyBinary.Sample {
             role.Log();
 
 
+            byte[] buffer = new byte[1024];
+            int offset = 0;
+
+            Bit32 b32 = new Bit32();
+            float f = 1.1f;
+            b32.f = f;
+
+            BinaryWrite.WriteUint(buffer, b32.uf, ref offset);
+
+            // Read
+            offset = 0;
+            uint fr = BinaryReader.ReadUint(buffer, ref offset);
+            Bit32 r32 = new Bit32();
+            r32.uf = fr;
+            Debug.Log($"f: {f}, f2: {r32.f}");
+
+            Debug.Log($"Hello \0 World  \" ");
             // role.bool1 = new bool[2];
             // for (int i = 0; i < 2; i++) {
             //     role.bool1[i] = true;
